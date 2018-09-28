@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--
+cards
+menu
+tabs
+-->
+<html lang="en">
+  <head>
+    <title>House Canary Test Project</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/png" href="https://pbs.twimg.com/profile_images/958779723085053952/YVVvCvlJ_400x400.jpg" sizes="32x32">
+  </head>
+
+  <body>
+  <div id="app">
+  <v-app style = "background-image: url(https://i.ytimg.com/vi/EZ7la-hMNuk/maxresdefault.jpg);background-repeat: no-repeat; background-size: cover" >
+
+
+
+    <!-- toolbar -->
+    <v-layout pa-2 ma-2 align-start>
+    <v-toolbar color = "grey darken-2" dark fixed app pa-4 ma-2>
+      <v-toolbar-side-icon></v-toolbar-side-icon>
+                <img src="https://pbs.twimg.com/profile_images/958779723085053952/YVVvCvlJ_400x400.jpg" height="38px" width="38px">
+      <v-toolbar-title>House Canary Tool</v-toolbar-title>
+    </v-toolbar>
+  </v-layout>
+
+    <!-- middle content -->
+    <v-container grid-list-xl >
+    <v-layout row           
+              align-center
+              style = "border-color: red; border-width: 5px" >
+
+<v-flex xs6>
+ <v-card pa-6 ma-2>
+        <v-toolbar color="grey lighten-2">
+
+          <v-toolbar-title>My Saved Properties</v-toolbar-title>
+
+          <v-spacer></v-spacer>
+
+          <v-btn icon>
+            <v-icon>search</v-icon>
+          </v-btn>
+        </v-toolbar>
+
+        <v-list>
+          <template v-for="(item, index) in items">
+            <v-subheader
+              v-if="item.header"
+              :key="item.header"
+            >
+              {{ item.header }}
+            </v-subheader>
+
+            <v-divider
+              v-else-if="item.divider"
+              :inset="item.inset"
+              :key="index"
+            ></v-divider>
+
+            <v-list-tile
+              v-else
+              :key="item.title"
+              avatar
+              @click="getData(item.address, item.zipcode, item.pic)"
+            >
+              <v-list-tile-avatar>
+                <img :src="item.pic">
+              </v-list-tile-avatar>
+
+              <v-list-tile-content>
+                <v-list-tile-title v-html="item.address"></v-list-tile-title>
+                <v-list-tile-sub-title v-html="item.zipStr"></v-list-tile-sub-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </template>
+        </v-list>
+
+      </v-card>
+
+
+</v-flex>
+
+<v-flex xs6 order-lg2>
+        <v-card>
+        <v-img 
+          v-bind:src="mainpic"
+          height="200px"
+          >
+        </v-img>
+
+        <v-card-title primary-title>
+          <div>
+            <h3 class="headline mb-0"> {{disp_address}} </h3>
+            <div> {{disp_city}} , {{disp_state}} {{disp_zipcode}} <br>
+              Price: $ {{price}}
+          </div>
+        </v-card-title>
+
+        <v-card-actions>
+          <v-btn icon @click="show = !show">
+            <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+          </v-btn>
+          <v-card-text> Property Details </v-card-text>
+        </v-card-actions>
+
+        <v-slide-y-transition>
+          <v-card-text v-show="show">
+              Year Built: {{ yearBuilt }} <br>
+              Bedrooms: {{ bedrooms }} <br>
+              Bathrooms: {{ bathrooms }} <br>
+              Lot Size: {{ acres }} acres
+          </v-card-text>
+        </v-slide-y-transition>
+      </v-card>
+
+    </v-flex>
+
+  </v-layout>
+</v-container>
+
+   <!-- footer -->
+
+    <v-footer color = "grey darken-3" dark app pa-4>
+      <span class="white--text">&copy;<b> 9/10/2018 - Crawford King<b/></span>
+    </v-footer>
+
+  </v-app>
+
+  </div>
+  <script src="./dist/build.js"></script>
+  </body>
+</html>
