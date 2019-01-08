@@ -7,7 +7,7 @@ let handler2 = function(address, zipcode, endpoint) {
 	return axios.get(url + endpoint, {
 		auth: {
 			username: 'gcrawfordking@gmail.com',
-			password: 'q56eHqPU'
+			password: 'password'
 		},
 		params: {
 				address: address,
